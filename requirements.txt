@@ -1,0 +1,6 @@
+flask
+slack_sdk
+openai
+numpy
+scipy
+scikit-learn
