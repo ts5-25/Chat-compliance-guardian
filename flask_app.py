@@ -20,10 +20,15 @@ with open('model_L_SVM_pca_v2.pkl', mode='rb') as f:
 with open('model_H_SVM_pca_v2.pkl', mode='rb') as f:
     model_logi = pickle.load(f)
     
+# 環境変数の読み込み(local)
+#bot_token = os.environ["SLACK_BOT_TOKEN"]
+#slack_signing_secret = os.environ["SLACK_SIGNING_SECRET"]
+#api_key = os.environ["OPENAI_API_KEY"]
+
 # 環境変数の読み込み
-bot_token = os.environ["SLACK_BOT_TOKEN"]
-slack_signing_secret = os.environ["SLACK_SIGNING_SECRET"]
-api_key = os.environ["OPENAI_API_KEY"]
+bot_token = "SLACK_BOT_TOKEN"
+slack_signing_secret = "SLACK_SIGNING_SECRET"
+api_key = "OPENAI_API_KEY"
 
 openai_client = OpenAI(
     api_key=api_key
