@@ -56,7 +56,7 @@ app = Flask(__name__)
 
 client = slack_sdk.WebClient(token=bot_token)
 
-BOT_USER_ID = client.api_call("auth.test")['user_id']
+#BOT_USER_ID = client.api_call("auth.test")['user_id']
 
 admin_channel = "C06L61T11MK" #ハラスメント報告
 message_channel = "C06LBP5BB0U" #メッセージ検知を報告
@@ -85,7 +85,7 @@ def respond_message():
                     user_id = event['user']
                     text = event['text']
                     ts = event['ts']
-                    if BOT_USER_ID != user_id:
+                    if user_id is not None:
                         client.chat_update(
                             channel=message_channel,
                             ts='1708664868.525089',
