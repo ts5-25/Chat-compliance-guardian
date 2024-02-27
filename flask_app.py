@@ -56,8 +56,8 @@ app = Flask(__name__)
 
 client = slack_sdk.WebClient(token=bot_token)
 
-BOT_USER_ID = client.api_call("auth.test")['user_id']
-print(BOT_USER_ID)
+#BOT_USER_ID = client.api_call("auth.test")['user_id']
+
 
 admin_channel = "C06L61T11MK" #ハラスメント報告
 message_channel = "C06LBP5BB0U" #メッセージ検知を報告
@@ -76,40 +76,6 @@ def respond_message():
         
     d = {'challenge' : challenge}
         # レスポンスとしてJSON化して返却
-    try:
-        if 'event' in json:
-            event = json['event']
-            if event["type"] == "message":
-                if 'user' in event:
-                    # 投稿のチャンネルID、ユーザーID、投稿内容を取得
-                    channel_id = event['channel']
-                    user_id = event['user']
-                    text = event['text']
-                    ts = event['ts']
-                    if BOT_USER_ID != user_id:
-                        client.chat_update(
-                            channel=message_channel,
-                            ts='1708664868.525089',
-                            text="message検知"
-                        )
-                        if AnalyzeMessage(text):
-                            client.reactions_add(
-                                channel=channel_id,
-                                name="attention",
-                                timestamp=ts
-                            )
-                            client.reactions_add(
-                                channel=channel_id,
-                                name="harassment",
-                                timestamp=ts
-                            )
-                            response = client.chat_getPermalink(channel=channel_id, message_ts=ts)
-                            link = response['permalink']
-                            
-                            client.chat_postMessage(channel=admin_channel, text=f"ハラスメントの疑いを検知しました:\n「{text}」\n{link}")
-                            
-    except SlackApiError as e:
-        assert e.response["error"]
     return jsonify(d)
 
 if __name__ == "__main__":
