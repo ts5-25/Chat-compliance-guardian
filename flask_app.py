@@ -90,13 +90,7 @@ def respond_message():
                     text = event['text']
                     ts = event['ts']
                     if user_id != bot_id:  
-                        client.chat_postMessage(channel=channel_id, text=f"ハラスメントの疑いを検知しました:\n「{text}」")  
                         print("id:", user_id)
-                        client.reactions_add(
-                                channel=channel_id,
-                                name="attention",
-                                timestamp=ts
-                            )
                         if AnalyzeMessage(text):
                             print(text)
                             client.reactions_add(
