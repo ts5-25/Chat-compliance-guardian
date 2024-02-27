@@ -40,6 +40,7 @@ def get_embedding_small(text, model="text-embedding-3-small"):
 
 def AnalyzeMessage(message):
     a = []
+    print(message)
     embedding = get_embedding_small(message)
     a.append(embedding)
     pca_vec = pca.transform(a)
