@@ -62,7 +62,7 @@ client = slack_sdk.WebClient(token=bot_token)
 
 admin_channel = "C06L61T11MK" #ハラスメント報告
 message_channel = "C06LBP5BB0U" #メッセージ検知を報告
-bot_id = ""
+bot_id = "U06KUV2DXBL"
 
 @app.route('/slack/events', methods=['POST'])
 def respond_message():
@@ -90,7 +90,8 @@ def respond_message():
                     text = event['text']
                     ts = event['ts']
                     if user_id != bot_id:
-                        print("id:", user_id)    
+                        print("id:", user_id)  
+                        client.chat_postMessage(channel=channel_id, text=f"ハラスメントの疑いを検知しました:\n「{text}」")  
                         client.reactions_add(
                                 channel=channel_id,
                                 name="attention",
