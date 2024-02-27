@@ -46,6 +46,7 @@ def AnalyzeMessage(message):
     pred1 = model_logi.predict(pca_vec)
     pred2 = model_L_SVM.predict(pca_vec)
     pred3 = model_H_SVM.predict(pca_vec)
+    print(pca_vec)
     if  (pred1==1) and (pred2==1) and (pred3==1):
         return True
     else:
