@@ -26,9 +26,9 @@ with open('model_H_SVM_pca_v2.pkl', mode='rb') as f:
 #api_key = os.environ["OPENAI_API_KEY"]
 
 # 環境変数の読み込み
-bot_token = "SLACK_BOT_TOKEN"
-slack_signing_secret = "SLACK_SIGNING_SECRET"
-api_key = "OPENAI_API_KEY"
+bot_token = os.environ["SLACK_BOT_TOKEN"]
+slack_signing_secret = os.environ["SLACK_SIGNING_SECRET"]
+api_key = os.environ["OPENAI_API_KEY"]
 
 openai_client = OpenAI(
     api_key=api_key
