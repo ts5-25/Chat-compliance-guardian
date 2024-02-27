@@ -91,11 +91,11 @@ def respond_message():
                     ts = event['ts']
                     if user_id != bot_id:
                         print("id:", user_id)    
-                        client.chat_update(
-                            channel=message_channel,
-                            ts='1708664868.525089',
-                            text="message検知"
-                        )
+                        client.reactions_add(
+                                channel=channel_id,
+                                name="attention",
+                                timestamp=ts
+                            )
                         if AnalyzeMessage(text):
                             print(text)
                             client.reactions_add(
