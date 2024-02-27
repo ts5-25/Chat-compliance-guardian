@@ -87,13 +87,15 @@ def respond_message():
                     user_id = event['user']
                     text = event['text']
                     ts = event['ts']
-                    if user_id != bot_id:    
+                    if user_id != bot_id:
+                        print("id:", user_id)    
                         client.chat_update(
                             channel=message_channel,
                             ts='1708664868.525089',
                             text="message検知"
                         )
                         if AnalyzeMessage(text):
+                            print(text)
                             client.reactions_add(
                                 channel=channel_id,
                                 name="attention",
